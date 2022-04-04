@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Order";
+}
+<!doctype html>
+<div class="row mt-5 justify-content-center">
+        @if(Model != null)
+        {
+            <div class="col-6">
+            @foreach(var item in Model.products)
+            {
+                <div class="container p-3 mb-2 bg-white rounded-3">
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <img src="~/img/@item.Img" style="width: 209.5px; height: 150px;">
+                        </div>
+                        <div class="col-3 mt-4">
+                            <p>@item.Name</p>
+                        </div>
+                        <div class="col-4">
+                            <div class="container mt-4">
+                                <div class="row">
+                                    <p>Цена: @item.Price.ToString("c")</p>
+                                </div>
+                                <div class="row">
+                                    <a class="btn btn-danger" href="/Home/DelOrder?ProductId=@item.Id">Удалить</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+            <div class="col-3 bg-white mb-2 rounded-3">
+                <div class="container mt-4">
+                    <div class="row mb-2">
+                        <h4>Итого: @Model.Price.ToString("c")</h4>
+                    </div>
+                    <div class="row">
+                        <a class="btn btn-danger">Оформить заказ</a>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-6">
+            <div class="container bg-white rounded-3 p-5 mb-2">
+                <div class="row justify-content-center">
+                    <div class="col-md-auto">
+                        <h2>Корзина пуста</h2>
+                    </div>
+                </div>
+            </div>
+            </div>
+        }
+</div>
