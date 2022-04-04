@@ -25,7 +25,9 @@ namespace MyShop.Controllers
             if (HttpContext.Session.Keys.Contains("order"))
             {
                 Order order = HttpContext.Session.Get<Order>("order");
-                ViewBag.OrderCount = order.products.Count;
+                ViewBag.OrderCount = 0;
+                foreach (var item in order.products)
+                    ViewBag.OrderCount += item.AvailabilityOrder;
             }
                 
             return View(model);
@@ -36,7 +38,9 @@ namespace MyShop.Controllers
             if (HttpContext.Session.Keys.Contains("order"))
             {
                 Order order = HttpContext.Session.Get<Order>("order");
-                ViewBag.OrderCount = order.products.Count;
+                ViewBag.OrderCount = 0;
+                foreach (var item in order.products)
+                    ViewBag.OrderCount += item.AvailabilityOrder;
                 return View(order);
             }
             else
@@ -95,6 +99,12 @@ namespace MyShop.Controllers
                 HttpContext.Session.Remove("order");
             else
                 HttpContext.Session.Set<Order>("order", order);
+            return RedirectToAction("Order");
+        }
+
+        public IActionResult AllDelOrder()
+        {
+            HttpContext.Session.Remove("order");
             return RedirectToAction("Order");
         }
     }

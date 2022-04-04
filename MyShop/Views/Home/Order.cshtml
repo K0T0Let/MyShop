@@ -6,6 +6,11 @@
         @if(Model != null)
         {
             <div class="col-6">
+                <div class="container p-3 mb-2 bg-white rounded-3">
+                    <div class="row px-5">
+                        <a class="btn btn-danger" href="/Home/AllDelOrder/">Удалисть всё</a>
+                    </div>
+                </div>
             @foreach(var item in Model.products)
             {
                 <div class="container p-3 mb-2 bg-white rounded-3">
@@ -19,7 +24,10 @@
                         <div class="col-4">
                             <div class="container mt-4">
                                 <div class="row">
-                                    <p>Цена: @item.Price.ToString("c")</p>
+                                    <label>Цена: @item.Price.ToString("c")</label>
+                                </div>
+                                <div class="row">
+                                    <label class="mb-2">Количество: @item.AvailabilityOrder</label>
                                 </div>
                                 <div class="row">
                                     <a class="btn btn-danger" href="/Home/DelOrder?ProductId=@item.Id">Удалить</a>
