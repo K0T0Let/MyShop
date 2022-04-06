@@ -18,7 +18,7 @@ namespace MyShop
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<ICategory, MockCategory>();
+            services.AddTransient<IBrand, MockBrand>();
             services.AddTransient<IProducts, MockProducts>();
             services.AddMvc();
             services.AddDistributedMemoryCache();
@@ -41,7 +41,7 @@ namespace MyShop
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                    pattern: "{controller=Shop}/{action=Index}/{id?}"
                     );
             });
         }

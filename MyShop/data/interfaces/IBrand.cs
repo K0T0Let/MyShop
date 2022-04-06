@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace MyShop.data.interfaces
 {
-    public interface ICategory
+    public interface IBrand
     {
-        IEnumerable<Category> categories { get; set; }
+        IEnumerable<Brand> brands { get; set; }
     }
 }

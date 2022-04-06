@@ -3,23 +3,31 @@ using Microsoft.AspNetCore.Mvc;
 using MyShop.data.interfaces;
 using MyShop.data.Models;
 using MyShop.data.Utilit;
+using MyShop.data.ModelViews;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace MyShop.Controllers
 {
-    public class HomeController : Controller
+    public class ShopController : Controller
     {
         private readonly IProducts _products;
-        private readonly ICategory _category;
+        private readonly IBrand _brand;
 
-        public HomeController(IProducts products, ICategory category)
+        public ShopController(IProducts products, IBrand brand)
         {
             _products = products;
-            _category = category;
+            _brand = brand;
         }
 
         public IActionResult Index()
+        {
+            ModelViewIndex model = new ModelViewIndex { products = _products.products, brands=_brand.brands };
+            return View(model);
+        }
+
+
+        /*public IActionResult Index()
         {
             AllModels model = new AllModels { products = _products.products, categories = _category.categories };
             if (HttpContext.Session.Keys.Contains("order"))
@@ -106,6 +114,6 @@ namespace MyShop.Controllers
         {
             HttpContext.Session.Remove("order");
             return RedirectToAction("Order");
-        }
+        }*/
     }
 }

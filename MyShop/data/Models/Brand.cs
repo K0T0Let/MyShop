@@ -1,8 +1,9 @@
 ﻿namespace MyShop.data.Models
 {
-    public class Category
+    public class Brand
     {
         public uint Id { get; set; }
+        public string Img { get; set; }
         public string Name { get; set; }
     }
 }
