@@ -15,7 +15,9 @@
 				<div class="row">
 					<div class="products-tabs">
 						<div id="tab1" class="tab-pane active">
-							@NoveltyProducts.GetNoveltyProducts(Html, Model)
+							<div class="products-slick" data-nav="#slick-nav-1">
+								@await Html.PartialAsync("PartialView/Products", new List<Product>(Model.products))
+							</div>
 							<div id="slick-nav-1" class="products-slick-nav"></div>
 						</div>
 					</div>
@@ -26,6 +28,8 @@
 </div>
 <div class="section">
 	<div class="container">
-		@ChoiceBrands.GetChoiceBrands(Html, Model)
+		<div class="row">
+			@await Html.PartialAsync("PartialView/Brands", new List<Brand>(Model.brands))
+		</div>
 	</div>
 </div>

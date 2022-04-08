@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Section page";
+}
+
+<!DOCTYPE html>
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div id="aside" class="col-md-3">
+				<img src="@Model.BrandImg" alt="" style='width: 100%;'/>
+				<form>
+					@await Html.PartialAsync("PartialView/Filter", new GetСharacteristicsFilter(Model.сharacteristicsFilters))
+				</form>
+			</div>
+			<div id="store" class="col-md-9">
+				<div class="row">
+					@if(Model.products != null)
+					{
+						@await Html.PartialAsync("PartialView/Products", new List<Product>(Model.products))
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

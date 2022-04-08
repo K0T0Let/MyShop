@@ -20,6 +20,7 @@ namespace MyShop
         {
             services.AddTransient<IBrand, MockBrand>();
             services.AddTransient<IProducts, MockProducts>();
+            services.AddTransient<IÑharacteristicsFilter, MockÑharacteristicsFilter>();
             services.AddMvc();
             services.AddDistributedMemoryCache();
             services.AddSession();

@@ -714,9 +714,10 @@ textarea.input {
 ===========================================================*/
 
 .shop {
-  position: relative;
-  overflow: hidden;
-  margin: 15px 0px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    margin: 15px 0px;
 }
 
 .shop:before {

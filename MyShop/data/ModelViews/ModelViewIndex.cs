@@ -7,6 +7,12 @@ namespace MyShop.data.ModelViews
 {
     public class ModelViewIndex : IBrand, IProducts
     {
+        public ModelViewIndex(IEnumerable<Product> products, IEnumerable<Brand> brands)
+        {
+            this.products = products;
+            this.brands = brands;
+        }
+
         IEnumerable<Product> _products;
         public IEnumerable<Product> products
         { 
@@ -16,7 +22,7 @@ namespace MyShop.data.ModelViews
             }
             set 
             {
-                _products = value.Where(p => p.Novelty == true);
+                _products = value.Where(p => p.Characteristics.Novelty == true);
             }
         }
         public IEnumerable<Brand> brands { get; set; }

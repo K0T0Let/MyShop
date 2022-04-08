@@ -13,20 +13,35 @@ namespace MyShop.Controllers
     {
         private readonly IProducts _products;
         private readonly IBrand _brand;
+        private readonly IСharacteristicsFilter _filter;
 
-        public ShopController(IProducts products, IBrand brand)
+        public ShopController(IProducts products, IBrand brand, IСharacteristicsFilter filter)
         {
             _products = products;
             _brand = brand;
+            _filter = filter;
         }
 
         public IActionResult Index()
         {
-            ModelViewIndex model = new ModelViewIndex { products = _products.products, brands=_brand.brands };
+            ModelViewIndex model = new ModelViewIndex(_products.products, _brand.brands);
             return View(model);
         }
 
-
+        [HttpGet]
+        public IActionResult Section(uint id)
+        {
+            if(HttpContext.Request.QueryString.ToString() == "")
+            {
+                ModelViewSection model = new ModelViewSection(id, _products.products, _filter.сharacteristicsFilters);
+                return View(model);
+            }
+            else
+            {
+                ModelViewSection model = new ModelViewSection(id, HttpContext.Request.Query, _products.products, _filter.сharacteristicsFilters);
+                return View(model);
+            }
+        }
         /*public IActionResult Index()
         {
             AllModels model = new AllModels { products = _products.products, categories = _category.categories };

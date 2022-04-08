@@ -1,0 +1,29 @@
+﻿@foreach(var item in Model)
+{
+	<div class="col-md-3 col-xs-6">
+		<div class="product">
+			<div class="product-img">
+				<img src="~/img/@item.GetType().Name/@item.Characteristics.Brand.Name/@item.Img.ImgPreview" alt="">
+				@if(@item.Characteristics.Novelty){
+					<div class="product-label">
+						<span class="new">NEW</span>
+					</div>
+				}								
+			</div>
+			<div class="product-body">
+				<p class="product-category">@item.Characteristics.Brand.Name</p>
+				@{
+					var ModelName = new System.Text.StringBuilder();
+					ModelName.Append(item.Characteristics.ModelName);
+					ModelName.Append($" {item.Characteristics.ROMMemory}Gb");
+					ModelName.Append($" ({item.Characteristics.Color.Name})");
+				}
+				<h3 class="product-name"><a href="#">@ModelName</a></h3>
+				<h4 class="product-price">@item.Characteristics.Price.ToString("c")</h4>
+			</div>
+			<div class="add-to-cart">
+				<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> В корзину</button>
+			</div>
+		</div>
+	</div>
+}

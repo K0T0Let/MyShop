@@ -1,0 +1,20 @@
+﻿<h3 class="aside-title">@Model.Name</h3>
+@for (int i = 0; i < Model.checkboxLists.Count; i++)
+{
+	<div class="checkbox-filter">
+		<div class="input-checkbox">
+			@if (Model.checkboxLists[i].checkbox)
+			{
+				<input type="checkbox" name="@Model.ListName-@i-@Model.checkboxLists[i].item" id="@Model.ListName-@i" value="true" checked>
+			}
+			else
+			{
+				<input type="checkbox" name="@Model.ListName-@i-@Model.checkboxLists[i].item" id="@Model.ListName-@i" value="true">
+			}
+			<label for="@Model.ListName-@i">
+				<span></span>
+				@Model.checkboxLists[i].item @Model.Prefix
+			</label>
+		</div>
+	</div>
+}

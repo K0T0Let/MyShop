@@ -1,0 +1,90 @@
+﻿<div class="aside">
+	<h3 class="aside-title">Фильтр</h3>
+	<div class="checkbox-filter">
+		<div class="input-checkbox">
+			@if (Model.filter.Availability)
+			{
+				<input type="checkbox" name="Availability" id="Availability" value="true" checked>
+			}
+			else
+			{
+				<input type="checkbox" name="Availability" id="Availability" value="true">
+			}
+			<label for="Availability">
+				<span></span>
+				В наличии
+			</label>
+		</div>
+		<div class="input-checkbox">
+			@if (Model.filter.Novelty)
+			{
+				<input type="checkbox" name="Novelty" id="Novelty" value="true" checked>
+			}
+			else
+			{
+				<input type="checkbox" name="Novelty" id="Novelty" value="true">
+			}
+			<label for="Novelty">
+				<span></span>
+				Только новинки
+			</label>
+		</div>
+	</div>
+</div>
+<div class="aside">
+	<h3 class="aside-title">Стоимость</h3>
+	<div class="price-filter">
+		<div class="input-number price-min">
+			<input type="number" name="PriceFrom" value="@Model.filter.PriceFrom"/>
+		</div>
+		<span>-</span>
+		<div class="input-number price-max">
+			<input type="number" name="PriceTo" value="@Model.filter.PriceTo"/>
+		</div>
+	</div>
+</div>
+@if (@Model.filter.ModelName.Count != 0)
+{
+	<div class="aside">
+		@await Html.PartialAsync("PartialView/FilterCheckboxList", 
+		new FilterCheckboxList<string>("Модели", "ModelName", new List<CheckboxList<string>>(Model.filter.ModelName), ""))
+	</div>
+}
+<div class="aside">
+	@await Html.PartialAsync("PartialView/FilterCheckboxList", 
+	new FilterCheckboxList<uint>("Объем оперативной памяти", "RAMMemory", new List<CheckboxList<uint>>(Model.filter.RAMMemory), "Gb"))
+</div>
+<div class="aside">
+	@await Html.PartialAsync("PartialView/FilterCheckboxList", 
+	new FilterCheckboxList<uint>("Объем встроенной памяти", "ROMMemory", new List<CheckboxList<uint>>(Model.filter.ROMMemory), "Gb"))
+</div>
+<div class="aside">
+	<h3 class="aside-title">Объем аккумулятора</h3>
+	<div class="price-filter">
+		<div class="input-number price-min">
+			<input type="number" name="BatteryCapacityFrom" value="@Model.filter.BatteryCapacityFrom"/>
+		</div>
+		<span>-</span>
+		<div class="input-number price-max">
+			<input type="number" name="BatteryCapacityTo" value="@Model.filter.BatteryCapacityTo"/>
+		</div>
+	</div>
+</div>
+@if (@Model.filter.Diagonal.Count != 0)
+{
+	<div class="aside">
+		@await Html.PartialAsync("PartialView/FilterCheckboxList", 
+		new FilterCheckboxList<double>("Диоганаль экрана", "Diagonal", new List<CheckboxList<double>>(Model.filter.Diagonal), ""))
+	</div>
+}
+<div class="aside">
+	@await Html.PartialAsync("PartialView/FilterCheckboxList", 
+	new FilterCheckboxList<uint>("Количество ядер", "Core", new List<CheckboxList<uint>>(Model.filter.Core), ""))
+</div>
+<div class="aside">
+	@await Html.PartialAsync("PartialView/FilterCheckboxList", 
+	new FilterCheckboxList<uint>("Количество SIM-карт", "SIMCard", new List<CheckboxList<uint>>(Model.filter.SIMCard), ""))
+</div>
+<div class="aside">
+	<input type='submit' class='primary-btn' value='Найти'/>
+</div>
