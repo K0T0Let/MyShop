@@ -5,11 +5,11 @@
 		<div class="input-checkbox">
 			@if (Model.checkboxLists[i].checkbox)
 			{
-				<input type="checkbox" name="@Model.ListName-@i-@Model.checkboxLists[i].item" id="@Model.ListName-@i" value="true" checked>
+				<input type="checkbox" name="@Model.ListName-@i" id="@Model.ListName-@i" value="@Model.checkboxLists[i].item" checked>
 			}
 			else
 			{
-				<input type="checkbox" name="@Model.ListName-@i-@Model.checkboxLists[i].item" id="@Model.ListName-@i" value="true">
+				<input type="checkbox" name="@Model.ListName-@i" id="@Model.ListName-@i" value="@Model.checkboxLists[i].item">
 			}
 			<label for="@Model.ListName-@i">
 				<span></span>

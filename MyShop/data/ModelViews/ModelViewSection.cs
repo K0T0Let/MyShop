@@ -64,9 +64,12 @@ namespace MyShop.data.ModelViews
 
                 if(query != null)
                 {
-                    foreach(var q in query)
+                    int i;
+                    string name;
+
+                    foreach (var q in query)
                     {
-                        switch (q.Key.Split('-')[0].ToString())
+                        switch (q.Key.Split('-')[0])
                         {
                             case "Availability":
                                 _сharacteristicsFilters.Availability = true;
@@ -84,13 +87,55 @@ namespace MyShop.data.ModelViews
                                 _products = _products.Where(p => p.Characteristics.Price <= double.Parse(q.Value));
                                 break;
                             case "ModelName":
-                                _сharacteristicsFilters.ModelName[Convert.ToInt32(q.Key.Split('-')[1])].checkbox = true;
+                                _сharacteristicsFilters.ModelName[int.Parse(q.Key.Split('-')[1])].checkbox = true;
+                                i = int.Parse(q.Key.Split('-')[1]);
+                                name = q.Key.Split('-')[0];
+
+                                if(query[$"{name}-{i + 1}"].ToString() == "")
+                                {
+                                    List<Product> temp = new List<Product>();
+                                    do
+                                    {
+                                        temp.AddRange(_products.Where(p => p.Characteristics.ModelName == query[$"{name}-{i}"]));
+                                        i--;
+                                    }
+                                    while (query[$"{name}-{i}"].ToString() != "");
+                                    _products = temp;
+                                }                               
                                 break;
                             case "RAMMemory":
-                                _сharacteristicsFilters.RAMMemory[Convert.ToInt32(q.Key.Split('-')[1])].checkbox = true;
+                                _сharacteristicsFilters.RAMMemory[int.Parse(q.Key.Split('-')[1])].checkbox = true;
+                                i = int.Parse(q.Key.Split('-')[1]);
+                                name = q.Key.Split('-')[0];
+
+                                if (query[$"{name}-{i + 1}"].ToString() == "")
+                                {
+                                    List<Product> temp = new List<Product>();
+                                    do
+                                    {
+                                        temp.AddRange(_products.Where(p => p.Characteristics.RAMMemory == uint.Parse(query[$"{name}-{i}"])));
+                                        i--;
+                                    }
+                                    while (query[$"{name}-{i}"].ToString() != "");
+                                    _products = temp;
+                                }
                                 break;
                             case "ROMMemory":
-                                _сharacteristicsFilters.ROMMemory[Convert.ToInt32(q.Key.Split('-')[1])].checkbox = true;
+                                _сharacteristicsFilters.ROMMemory[int.Parse(q.Key.Split('-')[1])].checkbox = true;
+                                i = int.Parse(q.Key.Split('-')[1]);
+                                name = q.Key.Split('-')[0];
+
+                                if (query[$"{name}-{i + 1}"].ToString() == "")
+                                {
+                                    List<Product> temp = new List<Product>();
+                                    do
+                                    {
+                                        temp.AddRange(_products.Where(p => p.Characteristics.ROMMemory == uint.Parse(query[$"{name}-{i}"])));
+                                        i--;
+                                    }
+                                    while (query[$"{name}-{i}"].ToString() != "");
+                                    _products = temp;
+                                }
                                 break;
                             case "BatteryCapacityFrom":
                                 _сharacteristicsFilters.BatteryCapacityFrom = uint.Parse(q.Value);

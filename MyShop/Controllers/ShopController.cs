@@ -40,6 +40,11 @@ namespace MyShop.Controllers
             {
                 ModelViewSection model = new ModelViewSection(id, HttpContext.Request.Query, _products.products, _filter.сharacteristicsFilters);
                 return View(model);
+
+                /*string result = HttpContext.Request.Query["ModelName-1"].ToString();
+                if (HttpContext.Request.Query["ModelName-1"] == "")
+                    result = "false";
+                return Content(result);*/
             }
         }
         /*public IActionResult Index()
