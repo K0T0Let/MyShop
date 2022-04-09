@@ -116,7 +116,7 @@ namespace MyShop.data.mocks
                         Id = 4,
                         Characteristics = new СharacteristicsProduct
                         {
-                            Availability = 10,
+                            Availability = 0,
                             Novelty = true,
                             Price = 179990,
                             ModelName = "Galaxy Z Fold3 5G",
@@ -140,6 +140,39 @@ namespace MyShop.data.mocks
                             ImgProduct = new List<string>
                             {
                                 "Galaxy Z Fold3 Phantom Black.png",
+                            }
+                        }
+                    },
+
+                    new Product
+                    {
+                        Id = 5,
+                        Characteristics = new СharacteristicsProduct
+                        {
+                            Availability = 10,
+                            Novelty = false,
+                            Price = 18250,
+                            ModelName = "Galaxy A22s 5G",
+                            BrandId = 2,
+                            Brand = _brands.brands.FirstOrDefault(b => b.Id == 2),
+                            RAMMemory = 4,
+                            ROMMemory = 64,
+                            BatteryCapacity = 5000,
+                            Diagonal = 6.6,
+                            Core = 8,
+                            SIMCard = 2,
+                            Color = new ProductColor
+                            {
+                                Name = "Mint",
+                                RGBCode = "#d6e8dd"
+                            }
+                        },
+                        Img = new ProductImg
+                        {
+                            ImgPreview = "Galaxy A22s 5G Mint.png",
+                            ImgProduct = new List<string>
+                            {
+                                "Galaxy A22s 5G Mint.png",
                             }
                         }
                     }

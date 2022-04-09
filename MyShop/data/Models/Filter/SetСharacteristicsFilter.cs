@@ -30,6 +30,7 @@ namespace MyShop.data.Models.Filter
             _сharacteristicsFilters.ROMMemory = new List<CheckboxItem<uint>>();
             _сharacteristicsFilters.Core = new List<CheckboxItem<uint>>();
             _сharacteristicsFilters.SIMCard = new List<CheckboxItem<uint>>();
+
             foreach (var item in _products)
             {
                 if (_сharacteristicsFilters.ModelName.FirstOrDefault(c => c.item == item.Characteristics.ModelName) == null)
@@ -50,6 +51,12 @@ namespace MyShop.data.Models.Filter
                 if (_сharacteristicsFilters.SIMCard.FirstOrDefault(c => c.item == item.Characteristics.SIMCard) == null)
                     _сharacteristicsFilters.SIMCard.Add(new CheckboxItem<uint>(false, item.Characteristics.SIMCard));
             }
+
+            _сharacteristicsFilters.RAMMemory.CastomSort();
+            _сharacteristicsFilters.ROMMemory.CastomSort();
+            _сharacteristicsFilters.Core.CastomSort();
+            _сharacteristicsFilters.SIMCard.CastomSort();
+            _сharacteristicsFilters.Diagonal.CastomSort();
 
             if (_query != null)
             {
@@ -139,6 +146,33 @@ namespace MyShop.data.Models.Filter
             else
             {
                 temp.AddRange(_products.Where(p => request(p)));
+            }
+        }
+    }
+
+    public static class ListExtension
+    {
+        public static void CastomSort(this List<CheckboxItem<double>> list)
+        {
+            for (int i = 0; i < list.Count(); i++)
+            {
+                for (int j = i + 1; j < list.Count(); j++)
+                {
+                    if (list[i].item > list[j].item)
+                        (list[i].item, list[j].item) = (list[j].item, list[i].item);
+                }
+            }
+        }
+
+        public static void CastomSort(this List<CheckboxItem<uint>> list)
+        {
+            for (int i = 0; i < list.Count(); i++)
+            {
+                for (int j = i + 1; j < list.Count(); j++)
+                {
+                    if (list[i].item > list[j].item)
+                        (list[i].item, list[j].item) = (list[j].item, list[i].item);
+                }
             }
         }
     }
