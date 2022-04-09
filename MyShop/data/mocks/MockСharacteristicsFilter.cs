@@ -12,7 +12,7 @@ namespace MyShop.data.mocks
             {
                 return new СharacteristicsFilter
                 {
-                    Availability = true,
+                    Availability = false,
                     Novelty = false,
                     PriceFrom = 0,
                     PriceTo = 1000000,

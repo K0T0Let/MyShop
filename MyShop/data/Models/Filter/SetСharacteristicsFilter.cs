@@ -68,13 +68,13 @@ namespace MyShop.data.Models.Filter
                             break;
                         case "PriceFrom":
                             v = q.Value;
-                            if (v == "") v = "0";
+                            if (v == "") v = _сharacteristicsFilters.PriceFrom.ToString();
                             _сharacteristicsFilters.PriceFrom = double.Parse(v);
                             _products = _products.Where(p => p.Characteristics.Price >= double.Parse(v)).ToList();
                             break;
                         case "PriceTo":
                             v = q.Value;
-                            if (v == "") v = "1000000";
+                            if (v == "") v = _сharacteristicsFilters.PriceTo.ToString();
                             _сharacteristicsFilters.PriceTo = double.Parse(v);
                             _products = _products.Where(p => p.Characteristics.Price <= double.Parse(v)).ToList();
                             break;
@@ -92,13 +92,13 @@ namespace MyShop.data.Models.Filter
                             break;
                         case "BatteryCapacityFrom":
                             v = q.Value;
-                            if (v == "") v = "0";
+                            if (v == "") v = _сharacteristicsFilters.BatteryCapacityFrom.ToString();
                             _сharacteristicsFilters.BatteryCapacityFrom = uint.Parse(v);
                             _products = _products.Where(p => p.Characteristics.BatteryCapacity >= uint.Parse(v)).ToList();
                             break;
                         case "BatteryCapacityTo":
                             v = q.Value;
-                            if (v == "") v = "10000";
+                            if (v == "") v = _сharacteristicsFilters.BatteryCapacityTo.ToString();
                             _сharacteristicsFilters.BatteryCapacityTo = uint.Parse(v);
                             _products = _products.Where(p => p.Characteristics.BatteryCapacity <= uint.Parse(v)).ToList();
                             break;
