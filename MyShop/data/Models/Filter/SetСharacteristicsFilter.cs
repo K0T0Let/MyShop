@@ -26,16 +26,34 @@ namespace MyShop.data.Models.Filter
         {
             _сharacteristicsFilters.ModelName = new List<CheckboxItem<string>>();
             _сharacteristicsFilters.Diagonal = new List<CheckboxItem<double>>();
+            _сharacteristicsFilters.RAMMemory = new List<CheckboxItem<uint>>();
+            _сharacteristicsFilters.ROMMemory = new List<CheckboxItem<uint>>();
+            _сharacteristicsFilters.Core = new List<CheckboxItem<uint>>();
+            _сharacteristicsFilters.SIMCard = new List<CheckboxItem<uint>>();
             foreach (var item in _products)
             {
                 if (_сharacteristicsFilters.ModelName.FirstOrDefault(c => c.item == item.Characteristics.ModelName) == null)
                     _сharacteristicsFilters.ModelName.Add(new CheckboxItem<string>(false, item.Characteristics.ModelName));
+
                 if (_сharacteristicsFilters.Diagonal.FirstOrDefault(c => c.item == item.Characteristics.Diagonal) == null)
                     _сharacteristicsFilters.Diagonal.Add(new CheckboxItem<double>(false, item.Characteristics.Diagonal));
+
+                if (_сharacteristicsFilters.RAMMemory.FirstOrDefault(c => c.item == item.Characteristics.RAMMemory) == null)
+                    _сharacteristicsFilters.RAMMemory.Add(new CheckboxItem<uint>(false, item.Characteristics.RAMMemory));
+
+                if (_сharacteristicsFilters.ROMMemory.FirstOrDefault(c => c.item == item.Characteristics.ROMMemory) == null)
+                    _сharacteristicsFilters.ROMMemory.Add(new CheckboxItem<uint>(false, item.Characteristics.ROMMemory));
+
+                if (_сharacteristicsFilters.Core.FirstOrDefault(c => c.item == item.Characteristics.Core) == null)
+                    _сharacteristicsFilters.Core.Add(new CheckboxItem<uint>(false, item.Characteristics.Core));
+
+                if (_сharacteristicsFilters.SIMCard.FirstOrDefault(c => c.item == item.Characteristics.SIMCard) == null)
+                    _сharacteristicsFilters.SIMCard.Add(new CheckboxItem<uint>(false, item.Characteristics.SIMCard));
             }
 
             if (_query != null)
             {
+                string v;
                 foreach (var q in _query)
                 {
                     switch (q.Key.Split('-')[0])
@@ -49,12 +67,16 @@ namespace MyShop.data.Models.Filter
                             _products = _products.Where(p => p.Characteristics.Novelty);
                             break;
                         case "PriceFrom":
-                            _сharacteristicsFilters.PriceFrom = double.Parse(q.Value);
-                            _products = _products.Where(p => p.Characteristics.Price >= double.Parse(q.Value));
+                            v = q.Value;
+                            if (v == "") v = "0";
+                            _сharacteristicsFilters.PriceFrom = double.Parse(v);
+                            _products = _products.Where(p => p.Characteristics.Price >= double.Parse(v)).ToList();
                             break;
                         case "PriceTo":
-                            _сharacteristicsFilters.PriceTo = double.Parse(q.Value);
-                            _products = _products.Where(p => p.Characteristics.Price <= double.Parse(q.Value));
+                            v = q.Value;
+                            if (v == "") v = "1000000";
+                            _сharacteristicsFilters.PriceTo = double.Parse(v);
+                            _products = _products.Where(p => p.Characteristics.Price <= double.Parse(v)).ToList();
                             break;
                         case "ModelName":
                             _сharacteristicsFilters.ModelName[int.Parse(q.Key.Split('-')[1])].checkbox = true;
@@ -69,12 +91,16 @@ namespace MyShop.data.Models.Filter
                             setFilter(q.Key.Split('-')[0].ToString(), p => p.Characteristics.ROMMemory == uint.Parse(q.Value));
                             break;
                         case "BatteryCapacityFrom":
-                            _сharacteristicsFilters.BatteryCapacityFrom = uint.Parse(q.Value);
-                            _products = _products.Where(p => p.Characteristics.BatteryCapacity >= uint.Parse(q.Value));
+                            v = q.Value;
+                            if (v == "") v = "0";
+                            _сharacteristicsFilters.BatteryCapacityFrom = uint.Parse(v);
+                            _products = _products.Where(p => p.Characteristics.BatteryCapacity >= uint.Parse(v)).ToList();
                             break;
                         case "BatteryCapacityTo":
-                            _сharacteristicsFilters.BatteryCapacityTo = uint.Parse(q.Value);
-                            _products = _products.Where(p => p.Characteristics.BatteryCapacity <= uint.Parse(q.Value));
+                            v = q.Value;
+                            if (v == "") v = "10000";
+                            _сharacteristicsFilters.BatteryCapacityTo = uint.Parse(v);
+                            _products = _products.Where(p => p.Characteristics.BatteryCapacity <= uint.Parse(v)).ToList();
                             break;
                         case "Diagonal":
                             _сharacteristicsFilters.Diagonal[int.Parse(q.Key.Split('-')[1])].checkbox = true;

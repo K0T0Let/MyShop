@@ -16,7 +16,7 @@ namespace MyShop.data.mocks
                     Novelty = false,
                     PriceFrom = 0,
                     PriceTo = 1000000,
-                    RAMMemory = new List<CheckboxItem<uint>>
+                    /*RAMMemory = new List<CheckboxItem<uint>>
                     {
                         new CheckboxItem<uint>(false, 2),
                         new CheckboxItem<uint>(false, 4),
@@ -24,8 +24,8 @@ namespace MyShop.data.mocks
                         new CheckboxItem<uint>(false, 8),
                         new CheckboxItem<uint>(false, 12),
                         new CheckboxItem<uint>(false, 16),
-                    },
-                    ROMMemory = new List<CheckboxItem<uint>>
+                    },*/
+                    /*ROMMemory = new List<CheckboxItem<uint>>
                     {
                         new CheckboxItem<uint>(false, 8),
                         new CheckboxItem<uint>(false, 16),
@@ -35,10 +35,10 @@ namespace MyShop.data.mocks
                         new CheckboxItem<uint>(false, 256),
                         new CheckboxItem<uint>(false, 512),
                         new CheckboxItem<uint>(false, 1024),
-                    },
+                    },*/
                     BatteryCapacityFrom = 0,
                     BatteryCapacityTo = 10000,
-                    Core = new List<CheckboxItem<uint>>
+                    /*Core = new List<CheckboxItem<uint>>
                     {
                         new CheckboxItem<uint>(false, 2),
                         new CheckboxItem<uint>(false, 4),
@@ -46,12 +46,12 @@ namespace MyShop.data.mocks
                         new CheckboxItem<uint>(false, 8),
                         new CheckboxItem<uint>(false, 12),
                         new CheckboxItem<uint>(false, 16),
-                    },
-                    SIMCard = new List<CheckboxItem<uint>>
+                    },*/
+                    /*SIMCard = new List<CheckboxItem<uint>>
                     {
                         new CheckboxItem<uint>(false, 1),
                         new CheckboxItem<uint>(false, 2),
-                    }
+                    }*/
                 };
             } 
             set => throw new System.NotImplementedException(); }
