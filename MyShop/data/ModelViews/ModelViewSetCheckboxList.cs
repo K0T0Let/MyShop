@@ -2,9 +2,9 @@
 
 namespace MyShop.data.Models.Filter
 {
-    public class FilterCheckboxList<T>
+    public class ModelViewSetCheckboxList<T>
     {
-        public FilterCheckboxList(string Name, string ListName, List<CheckboxList<T>> checkboxLists, string Prefix)
+        public ModelViewSetCheckboxList(string Name, string ListName, List<CheckboxItem<T>> checkboxLists, string Prefix)
         {
             this.Name = Name;
             this.ListName = ListName;
@@ -14,6 +14,6 @@ namespace MyShop.data.Models.Filter
         public string Name { get; set; }
         public string ListName { get; set; }
         public string Prefix { get; set; }
-        public List<CheckboxList<T>> checkboxLists { get; set; }
+        public List<CheckboxItem<T>> checkboxLists { get; set; }
     }
 }

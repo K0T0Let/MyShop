@@ -1,8 +1,8 @@
 ﻿namespace MyShop.data.Models.Filter
 {
-    public class CheckboxList<T>
+    public class CheckboxItem<T>
     {
-        public CheckboxList(bool checkbox, T item)
+        public CheckboxItem(bool checkbox, T item)
         {
             this.checkbox = checkbox;
             this.item = item;
