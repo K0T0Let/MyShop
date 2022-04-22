@@ -1,0 +1,16 @@
+﻿<div class="checkbox-filter">
+	<div class="input-checkbox">
+		@if (Convert.ToBoolean(Model.Value.CharacteristicsPoints[0].Meaning))
+		{
+			<input type="checkbox" name="@Model.Key-0" id="@Model.Key-0" value="true" checked>
+		}
+		else
+		{
+			<input type="checkbox" name="@Model.Key-0" id="@Model.Key-0" value="true">
+		}
+		<label for="@Model.Key-0">
+			<span></span>
+			@Model.Value.CharacteristicsPoints[0].Name
+		</label>
+	</div>
+</div>

@@ -1,4 +1,4 @@
-﻿namespace MyShop.data.Models
+﻿namespace MyShop.data.Models.Product
 {
     public class ProductColor
     {

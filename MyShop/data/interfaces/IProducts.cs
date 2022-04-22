@@ -1,10 +1,10 @@
-﻿using MyShop.data.Models;
+﻿using MyShop.data.Models.Product;
 using System.Collections.Generic;
 
 namespace MyShop.data.interfaces
 {
     public interface IProducts
     {
-        IEnumerable<Product> products { get; set; }
+        IEnumerable<ProductModel> products { get; set; }
     }
 }

@@ -16,7 +16,7 @@
 					<div class="products-tabs">
 						<div id="tab1" class="tab-pane active">
 							<div class="products-slick" data-nav="#slick-nav-1">
-								@await Html.PartialAsync("PartialView/Products", new List<Product>(Model.products))
+								@await Html.PartialAsync("PartialView/Products", new List<ProductModel>(Model.products))
 							</div>
 							<div id="slick-nav-1" class="products-slick-nav"></div>
 						</div>
@@ -29,7 +29,7 @@
 <div class="section">
 	<div class="container">
 		<div class="row">
-			@await Html.PartialAsync("PartialView/Brands", new List<Brand>(Model.brands))
+			@await Html.PartialAsync("PartialView/Brands", new List<BrandModel>(Model.brands))
 		</div>
 	</div>
 </div>

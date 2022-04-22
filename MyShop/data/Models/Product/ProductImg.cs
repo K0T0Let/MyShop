@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MyShop.data.Models
+namespace MyShop.data.Models.Product
 {
     public class ProductImg
     {

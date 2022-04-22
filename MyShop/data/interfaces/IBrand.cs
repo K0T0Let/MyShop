@@ -1,10 +1,10 @@
-﻿using MyShop.data.Models;
+﻿using MyShop.data.Models.Brand;
 using System.Collections.Generic;
 
 namespace MyShop.data.interfaces
 {
     public interface IBrand
     {
-        IEnumerable<Brand> brands { get; set; }
+        IEnumerable<BrandModel> brands { get; set; }
     }
 }

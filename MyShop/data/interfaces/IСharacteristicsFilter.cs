@@ -1,9 +1,10 @@
-﻿using MyShop.data.Models;
+﻿using MyShop.data.Models.Filter;
+using System.Collections.Generic;
 
 namespace MyShop.data.interfaces
 {
     public interface IСharacteristicsFilter
     {
-        СharacteristicsFilter сharacteristicsFilters { get; set; }
+        Dictionary<string, Characteristic> characteristics { get; set; }
     }
 }

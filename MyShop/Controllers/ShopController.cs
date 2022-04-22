@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyShop.data.interfaces;
-using MyShop.data.Models;
-using MyShop.data.Utilit;
 using MyShop.data.ModelViews;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace MyShop.Controllers
 {
@@ -13,27 +9,37 @@ namespace MyShop.Controllers
     {
         private readonly IProducts _products;
         private readonly IBrand _brand;
-        private readonly IСharacteristicsFilter _filter;
+        private readonly IСharacteristicsFilter _characteristicsFilter;
 
-        public ShopController(IProducts products, IBrand brand, IСharacteristicsFilter filter)
+        public ShopController(IProducts products, IBrand brand, IСharacteristicsFilter characteristicsFilter)
         {
             _products = products;
             _brand = brand;
-            _filter = filter;
+            _characteristicsFilter = characteristicsFilter;
         }
 
         public IActionResult Index()
         {
-            ModelViewIndex model = new ModelViewIndex(_products.products, _brand.brands);
+            MVIndex model = new MVIndex(_products.products, _brand.brands);
             return View(model);
         }
 
         [HttpGet]
         public IActionResult Section(uint id)
         {
-            if(HttpContext.Request.QueryString.ToString() == "")
+            MVSection model = new MVSection(
+                id, 
+                _brand.brands, 
+                HttpContext.Request.Query, 
+                _products.products, 
+                _characteristicsFilter.characteristics
+                );
+            return View(model);
+
+
+            /*if (HttpContext.Request.QueryString.ToString() == "")
             {
-                ModelViewSection model = new ModelViewSection(id, _products.products, _filter.сharacteristicsFilters);
+                ModelViewSection model = new ModelViewSection(id, _products.products, _characteristicsFilter.characteristics);
                 return View(model);
             }
             else
@@ -41,11 +47,11 @@ namespace MyShop.Controllers
                 ModelViewSection model = new ModelViewSection(id, HttpContext.Request.Query, _products.products, _filter.сharacteristicsFilters);
                 return View(model);
 
-                /*string result = HttpContext.Request.Query["ModelName-1"].ToString();
+                string result = HttpContext.Request.Query["ModelName-1"].ToString();
                 if (HttpContext.Request.Query["ModelName-1"] == "")
                     result = "false";
-                return Content(result);*/
-            }
+                return Content(result);
+            }*/
         }
         /*public IActionResult Index()
         {

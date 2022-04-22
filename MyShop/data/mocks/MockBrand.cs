@@ -1,17 +1,17 @@
 ﻿using MyShop.data.interfaces;
-using MyShop.data.Models;
+using MyShop.data.Models.Brand;
 using System.Collections.Generic;
 
 namespace MyShop.data.mocks
 {
     public class MockBrand : IBrand
     {
-        public IEnumerable<Brand> brands { 
+        public IEnumerable<BrandModel> brands { 
             get {
-                return new List<Brand>
+                return new List<BrandModel>
                 {
-                    new Brand { Id=1, Name="Apple", Img="Apple.jpg" },
-                    new Brand { Id=2, Name="Samsung", Img="Samsung.jpg" },
+                    new BrandModel { Id=1, Name="Apple", Img="Apple.jpg" },
+                    new BrandModel { Id=2, Name="Samsung", Img="Samsung.jpg" },
                 };
             }
             set => throw new System.NotImplementedException(); }

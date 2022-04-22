@@ -1,0 +1,10 @@
+﻿<h3 class="aside-title">@Model.Value.Header</h3>
+<div class="price-filter">
+	<div class="input-number price-min">
+		<input type="number" name="@Model.Key-0" value="@Model.Value.CharacteristicsPoints[0].Meaning"/>
+	</div>
+	<span>-</span>
+	<div class="input-number price-max">
+		<input type="number" name="@Model.Key-1" value="@Model.Value.CharacteristicsPoints[1].Meaning"/>
+	</div>
+</div>
