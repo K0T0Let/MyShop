@@ -13,7 +13,9 @@
                     s = s.Replace(".", ",");
                 else if (s.Contains(","))
                     s = s.Replace(",", ".");
-                result = double.Parse(s);
+                try { result = double.Parse(s); }
+                catch { }
+                    
             }
             return result;
         }

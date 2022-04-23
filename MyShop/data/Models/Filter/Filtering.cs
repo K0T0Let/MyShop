@@ -45,13 +45,7 @@ namespace MyShop.data.Models.Filter
         {
             foreach (var item in characteristics)
             {
-                item.Value.CharacteristicsPoints.Sort((i, j) =>
-                {
-                    if (i.Name.TryToDouble(out var x) && j.Name.TryToDouble(out var y))
-                        return x.CompareTo(y);
-                    else
-                        return 0;
-                });
+                item.Value.CharacteristicsPoints = item.Value.CharacteristicsPoints.OrderBy(c => c.Name.ToDouble()).ToList();
                 for (int i = 0; i < item.Value.CharacteristicsPoints.Count; i++)
                 {
                     if (query.ContainsKey($"{item.Key}-{i}"))
