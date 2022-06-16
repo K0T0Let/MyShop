@@ -5,9 +5,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="data\Models\Filter\**" />
+    <Content Remove="data\Models\Filter\**" />
+    <EmbeddedResource Remove="data\Models\Filter\**" />
+    <None Remove="data\Models\Filter\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="data\Mocks\MockСharacteristicsFilter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Shop\PartialView\Filter.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="data\Mocks\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\js\" />
-    <Folder Include="wwwroot\img\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.17" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

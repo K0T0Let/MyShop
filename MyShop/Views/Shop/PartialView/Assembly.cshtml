@@ -1,0 +1,41 @@
+﻿@foreach(Assembly item in Model)
+{
+	<a href="/Shop/Element/@item.Id">
+		<div class="col-md-3 col-xs-6">
+			<div class="product">
+				<div class="product-img">
+					<img src="@item.Images[0].Src" alt="">
+					@if(@Convert.ToBoolean(item.Connections.FirstOrDefault(c => c.PropertyId == 1).Meaning)){
+						<div class="product-label">
+							<span class="new">NEW</span>
+						</div>
+					}								
+				</div>
+				<div class="product-body">
+					<p class="product-category">@item.Product.Brand.Name</p>
+					@{
+						var ModelName = new System.Text.StringBuilder();
+						ModelName.Append(item.Product.Name);
+						ModelName.Append($" {item.Connections.FirstOrDefault(c => c.PropertyId == 3).Meaning}Gb ");
+						ModelName.Append(item.Color.Name);
+					}
+					<h3 class="product-name"><a href="#">@ModelName</a></h3>
+					@if (int.Parse(item.Connections.FirstOrDefault(c => c.PropertyId == 4).Meaning) > 0)
+					{
+						<h4 class="product-price">@item.Connections.FirstOrDefault(c => c.PropertyId == 2).Meaning ₽</h4>
+					}
+					else
+					{
+						<h4 class="product-price">Нет в наличии</h4>
+					}
+				</div>
+				@if (int.Parse(item.Connections.FirstOrDefault(c => c.PropertyId == 4).Meaning) > 0)
+				{
+					<div class="add-to-cart">
+						<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> В корзину</button>
+					</div>
+				}
+			</div>
+		</div>
+	</a>
+}

@@ -1,0 +1,14 @@
+﻿@foreach(var item in Model)
+{
+    <div class="col-md-4 col-xs-6">
+        <a class="shop" href="/Shop/Section/@item.Id">
+            <div class="shop-img">
+                <img src="@item.Image.Src" alt="">
+            </div>
+        <div class="shop-body">
+            <h3>@item.Name</h3>
+            <span class="cta-btn">Подробнее <i class="fa fa-arrow-circle-right"></i></span>
+        </div>
+        </a>
+    </div>
+}

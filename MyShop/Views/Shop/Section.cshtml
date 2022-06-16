@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Section page";
+}
+
+<!DOCTYPE html>
+<div class="section" id="breadcrumb">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="breadcrumb-tree">
+					<li><a href="/">Главная</a></li>
+					<li class="active">@Model.Brand.Name</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div id="aside" class="col-md-3">
+				<img src="@Model.Brand.Image.Src" alt="" style='width: 100%;'/>
+				<form>
+					@await Html.PartialAsync("PartialView/Filter/FilterBox", new Dictionary<int, FilterElement>(Model.filters))
+				</form>
+			</div>
+			<div id="store" class="col-md-9">
+				<div class="row">
+					@if(Model.assembly != null)
+					{
+						@await Html.PartialAsync("PartialView/Assembly", new List<Assembly>(Model.assembly))
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
