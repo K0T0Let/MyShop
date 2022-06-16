@@ -91,17 +91,48 @@ ul, ol {
 \*----------------------------*/
 
 .primary-btn {
-  display: inline-block;
-  padding: 12px 30px;
-  background-color: #D10024;
-  border: none;
-  border-radius: 40px;
-  color: #FFF;
-  text-transform: uppercase;
-  font-weight: 700;
-  text-align: center;
-  -webkit-transition: 0.2s all;
-  transition: 0.2s all;
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #D10024;
+    border: none;
+    border-radius: 40px;
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+}
+
+.filter-installation-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #D10024;
+    border: none;
+    border-radius: 40px;
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+}
+
+.reset-filter-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #FFF;
+    border: 2px solid transparent;
+    border-radius: 40px;
+    border-color: #D10024;
+    color: #D10024;
+    text-transform: uppercase;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
 }
 
 .primary-btn:hover, .primary-btn:focus {
@@ -1212,8 +1243,12 @@ textarea.input {
 	Aside
 \*----------------------------*/
 
-.aside+.aside {
-  margin-top: 30px;
+.aside + .aside {
+    margin-top: 30px;
+}
+
+.aside-10px {
+    margin-top: 10px;
 }
 
 .aside>.aside-title {
@@ -1427,8 +1462,9 @@ textarea.input {
 }
 
 #product-imgs .product-preview {
-  margin: 0px 5px;
-  border: 1px solid #E4E7ED;
+    margin: 0px 5px;
+    /*border: 1px solid #E4E7ED;*/
+    border: 1px solid #FFF;
 }
 
 #product-imgs .product-preview.slick-current {

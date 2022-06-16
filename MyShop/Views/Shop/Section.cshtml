@@ -21,7 +21,7 @@
 			<div id="aside" class="col-md-3">
 				<img src="@Model.Brand.Image.Src" alt="" style='width: 100%;'/>
 				<form>
-					@await Html.PartialAsync("PartialView/Filter/FilterBox", new Dictionary<int, FilterElement>(Model.filters))
+					@await Html.PartialAsync("PartialView/Filter/FilterBox", (new Dictionary<int, FilterElement>(Model.filters), @Model.Brand.Id))
 				</form>
 			</div>
 			<div id="store" class="col-md-9">
