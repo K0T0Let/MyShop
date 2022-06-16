@@ -1,10 +1,10 @@
 ﻿<div class="aside">
     <h3 class="aside-title">Фильтр</h3>
 </div>
-@foreach (var c in Model)
+@foreach (var f in Model)
 {
     <div class="aside">
-        @await Html.PartialAsync($"PartialView/Filter/FiltrationTypes/{c.Value.filtrationType.GetType().Name}", new KeyValuePair<string, Characteristic>(c.Key, c.Value))
+        @await Html.PartialAsync($"PartialView/Filter/FiltrationTypes/{f.Value.filtrationType.GetType().Name}", new KeyValuePair<int, FilterElement>(f.Key, f.Value))
     </div>
 }
 <div class="aside">

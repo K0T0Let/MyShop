@@ -1,0 +1,134 @@
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<!DOCTYPE html>
+
+<div class="section" id="breadcrumb">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="breadcrumb-header">@Model.name</h1>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="breadcrumb-tree">
+					<li><a href="/">Главная</a></li>
+					<li><a href="/Shop/Section/@Model.brand.Id">@Model.brand.Name</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5 col-md-push-2">
+				<div id="product-main-img">
+					@foreach (var item in Model.images)
+					{
+						<div class="product-preview"><img src="@item" alt=""></div>
+					}
+				</div>									   
+			</div>										   
+			<div class="col-md-2 col-md-pull-5">		   
+                <div id="product-imgs">
+					@foreach (var item in Model.images)
+					{
+						<div class="product-preview"><img src="@item" alt=""></div>
+					}
+                </div>
+			</div>
+			<div class="col-md-5">
+				<div class="product-details">
+					<div class='product-offer'>
+						Цвет
+						@foreach (var item in Model.colors)
+						{
+							if(item.Key == Model.assemblyId)
+							{
+								<label class='product-offer-color'><i>@item.Value.Name</i><input checked type='radio' name='color' value='@item.Value.Id'/><span style='background-color: @item.Value.RGB_Code'></span></label>
+							}
+							else
+							{
+								<a href="/Shop/Element/@item.Key"><label class='product-offer-color'><i>@item.Value.Name</i><span style='background-color: @item.Value.RGB_Code'></span></label></a>
+							}
+						}
+					</div>
+					<div class='product-offer'>
+						Память
+						@foreach (var item in Model.ROMs)
+						{
+							if(item.Key == Model.assemblyId)
+							{
+								<label class='product-offer-size'><input checked type='radio' name='size' value='@item.Value'/><span>@item.Value ГБ</span></label>
+							}
+							else
+							{
+								<a href="/Shop/Element/@item.Key"><label class='product-offer-size'><span>@item.Value ГБ</span></label></a>
+							}
+						}
+					</div>
+					<div>
+						<h3 class="product-price">@Model.price.ToString("c")</h3>
+						<div>Наличие: 
+							@if(@Model.quantity > 0)
+							{
+								<span class="product-available">есть в наличии</span>
+							}
+							else
+							{
+								<span class="product-available">нет в наличии</span>
+							}
+							</div>
+					</div>
+					<br/>
+					<div class="add-to-cart">
+						@if(@Model.quantity > 0)
+							{
+								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> В корзину</button>
+							}
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div id="product-tab">
+					<ul class="tab-nav">
+						<li class="active"><a data-toggle="tab" href="#tab1">Описание</a></li>
+						<li><a data-toggle="tab" href="#tab2">Характеристики</a></li>
+					</ul>
+					<div class="tab-content">
+						<div id="tab1" class="tab-pane fade in active">
+							<div class="row">
+								<div class="col-md-12">
+									<p>@Model.description</p>
+								</div>
+							</div>
+						</div>
+						<div id="tab2" class="tab-pane fade in">
+							<div class="row">
+								<div class="col-md-12">
+									<div class='product-properties col-md-10'>										
+										@foreach (var item in Model.categories)
+										{
+											<div class='product-properties-group'>
+												<div><b>@item.Key</b></div>
+												@foreach ((string Name, string Value) item1 in item.Value)
+												{
+													<div class='product-property'><span>@item1.Name</span> <span>@item1.Value</span></div>
+												}
+											</div>
+										}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,58 +1,82 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MyShop.data.interfaces;
+using MyShop.data.DB;
+using MyShop.data.Interfaces;
 using MyShop.data.ModelViews;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using MyShop.data.Models;
+using System.Collections.Generic;
+using System;
 
 namespace MyShop.Controllers
 {
     public class ShopController : Controller
     {
-        private readonly IProducts _products;
-        private readonly IBrand _brand;
-        private readonly IСharacteristicsFilter _characteristicsFilter;
+        public readonly ShopDBContext shopDBContext;
+        public readonly IBrand brand;
+        public readonly IProduct product;
+        public readonly IAssembly assembly;
+        public readonly IColor color;
+        public readonly IImage image;
+        public readonly IProperty property;
+        public readonly ICategory_property category_Property;
+        public readonly IСharacteristicsFilter сharacteristicsFilter;
 
-        public ShopController(IProducts products, IBrand brand, IСharacteristicsFilter characteristicsFilter)
+        public ShopController(
+            ShopDBContext shopDBContext, 
+            IBrand brand, 
+            IProduct product, 
+            IAssembly assembly,
+            IColor color,
+            IImage image,
+            IProperty property,
+            ICategory_property category_Property,
+            IСharacteristicsFilter сharacteristicsFilter)
         {
-            _products = products;
-            _brand = brand;
-            _characteristicsFilter = characteristicsFilter;
+            this.shopDBContext = shopDBContext;
+            this.brand = brand;
+            this.product = product;
+            this.assembly = assembly;
+            this.color = color;
+            this.image = image;
+            this.property = property;
+            this.category_Property = category_Property;
+            this.сharacteristicsFilter = сharacteristicsFilter;
         }
 
         public IActionResult Index()
         {
-            MVIndex model = new MVIndex(_products.products, _brand.brands);
+            MVIndex model = new MVIndex(assembly.Assemblies, brand.Brands);
             return View(model);
         }
 
         [HttpGet]
         public IActionResult Section(uint id)
         {
+            //Сортировка сборок
+            List<Assembly> SortAssembly = assembly.Assemblies.Where(a => a.Product.BrandId == id).ToList()             
+                .OrderByDescending(sa => sa.Connections.FirstOrDefault(c => c.PropertyId == 1).Meaning)
+                .ThenBy(sa => sa.ColorId)
+                .ThenBy(sa => int.Parse(sa.Connections.FirstOrDefault(c => c.PropertyId == 3).Meaning)).ToList();
+
             MVSection model = new MVSection(
-                id, 
-                _brand.brands, 
-                HttpContext.Request.Query, 
-                _products.products, 
-                _characteristicsFilter.characteristics
+                SortAssembly,
+                HttpContext.Request.Query,
+                сharacteristicsFilter
                 );
             return View(model);
-
-
-            /*if (HttpContext.Request.QueryString.ToString() == "")
-            {
-                ModelViewSection model = new ModelViewSection(id, _products.products, _characteristicsFilter.characteristics);
-                return View(model);
-            }
-            else
-            {
-                ModelViewSection model = new ModelViewSection(id, HttpContext.Request.Query, _products.products, _filter.сharacteristicsFilters);
-                return View(model);
-
-                string result = HttpContext.Request.Query["ModelName-1"].ToString();
-                if (HttpContext.Request.Query["ModelName-1"] == "")
-                    result = "false";
-                return Content(result);
-            }*/
         }
+
+        public IActionResult Element(uint id)
+        {
+            var item1 = assembly.Assemblies.FirstOrDefault(a => a.Id == id);
+            var item2 = assembly.Assemblies.Where(a => a.Product.Id == item1.Product.Id).ToList();
+            return View(new MVElement(item1, item2));
+        }
+
+
         /*public IActionResult Index()
         {
             AllModels model = new AllModels { products = _products.products, categories = _category.categories };

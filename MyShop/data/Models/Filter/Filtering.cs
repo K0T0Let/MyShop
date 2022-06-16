@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MyShop.data.Models.Filter
 {
-    public class Filtering : IProducts, IСharacteristicsFilter
+    public class Filtering : IProduct, IСharacteristicsFilter
     {
         public Filtering(IEnumerable<ProductModel> products, Dictionary<string, Characteristic> characteristics, IQueryCollection query)
         {

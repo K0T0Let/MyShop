@@ -3,20 +3,32 @@
 }
 
 <!DOCTYPE html>
+<div class="section" id="breadcrumb">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="breadcrumb-tree">
+					<li><a href="/">Главная</a></li>
+					<li class="active">@Model.Brand.Name</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 <div class="section">
 	<div class="container">
 		<div class="row">
 			<div id="aside" class="col-md-3">
-				<img src="@Model.BrandImg" alt="" style='width: 100%;'/>
+				<img src="@Model.Brand.Image.Src" alt="" style='width: 100%;'/>
 				<form>
-					@await Html.PartialAsync("PartialView/Filter/FilterBox", new Dictionary<string, Characteristic>(Model.characteristics))
+					@await Html.PartialAsync("PartialView/Filter/FilterBox", new Dictionary<int, FilterElement>(Model.filters))
 				</form>
 			</div>
 			<div id="store" class="col-md-9">
 				<div class="row">
-					@if(Model.products != null)
+					@if(Model.assembly != null)
 					{
-						@await Html.PartialAsync("PartialView/Products", new List<ProductModel>(Model.products))
+						@await Html.PartialAsync("PartialView/Assembly", new List<Assembly>(Model.assembly))
 					}
 				</div>
 			</div>

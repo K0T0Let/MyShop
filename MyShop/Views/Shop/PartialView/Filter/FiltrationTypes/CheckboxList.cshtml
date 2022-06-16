@@ -1,9 +1,9 @@
 ﻿<h3 class="aside-title">@Model.Value.Header</h3>
-@for (int i = 0; i < Model.Value.CharacteristicsPoints.Count; i++)
+@for (int i = 0; i < Model.Value.items.Count; i++)
 {
 	<div class="checkbox-filter">
 		<div class="input-checkbox">
-			@if (Convert.ToBoolean(Model.Value.CharacteristicsPoints[i].Meaning))
+			@if (Convert.ToBoolean(Model.Value.items[i].Value))
 			{
 				<input type="checkbox" name="@Model.Key-@i" id="@Model.Key-@i" value="true" checked>
 			}
@@ -13,7 +13,7 @@
 			}
 			<label for="@Model.Key-@i">
 				<span></span>
-				@Model.Value.CharacteristicsPoints[i].Name
+				@Model.Value.items[i].Meaning
 			</label>
 		</div>
 	</div>

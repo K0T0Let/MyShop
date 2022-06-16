@@ -1,6 +1,6 @@
 ﻿<div class="checkbox-filter">
 	<div class="input-checkbox">
-		@if (Convert.ToBoolean(Model.Value.CharacteristicsPoints[0].Meaning))
+		@if (Convert.ToBoolean(Model.Value.items[0].Value))
 		{
 			<input type="checkbox" name="@Model.Key-0" id="@Model.Key-0" value="true" checked>
 		}
@@ -10,7 +10,7 @@
 		}
 		<label for="@Model.Key-0">
 			<span></span>
-			@Model.Value.CharacteristicsPoints[0].Name
+			@Model.Value.items[0].Meaning
 		</label>
 	</div>
 </div>

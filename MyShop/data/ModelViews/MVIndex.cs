@@ -1,26 +1,29 @@
-﻿using MyShop.data.interfaces;
-using MyShop.data.Models.Brand;
-using MyShop.data.Models.Product;
+﻿using MyShop.data.Interfaces;
+using MyShop.data.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System;
 
 namespace MyShop.data.ModelViews
 {
-    public class MVIndex : IBrand, IProducts
+    public class MVIndex
     {
-        public MVIndex(IEnumerable<ProductModel> products, IEnumerable<BrandModel> brands)
+        public MVIndex(IEnumerable<Assembly> assembly, IEnumerable<Brand> brand)
         {
-            this.products = products;
-            this.brands = brands;
+            this.assembly = assembly;
+            this.brand = brand;
         }
 
-        IEnumerable<ProductModel> _products;
-        public IEnumerable<ProductModel> products
+        IEnumerable<Assembly> _assembly;
+
+        //Выход
+        public IEnumerable<Assembly> assembly
         { 
-            get => _products;
-            set => _products = value.Where(p => Convert.ToBoolean(p.Characteristics["Novelty"]));
+            get => _assembly;
+            set => _assembly = value.Where(a => a.Connections[0].Meaning == "true");
         }
-        public IEnumerable<BrandModel> brands { get; set; }
+
+        //Выход
+        public IEnumerable<Brand> brand { get; set; }
     }
 }
