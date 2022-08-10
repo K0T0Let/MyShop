@@ -1,0 +1,15 @@
+﻿<div class="col-md-9 my-section-container">
+	<div class="row">
+		@foreach(var item in Model)
+		{
+			if(ViewBag.Section == item.Value)
+			{
+				<div class="my-margin-activ"><a class="my-section-text-activ" href="/Profile/@item.Key">@item.Value</a><br /></div>
+			}
+			else
+			{
+				<div class="my-margin"><a class="my-section-text" href="/Profile/@item.Key">@item.Value</a><br /></div>
+			}
+		}
+	</div>
+</div>

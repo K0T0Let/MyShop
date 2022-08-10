@@ -1,0 +1,31 @@
+﻿.my-section-container {
+    border-right-color: #e4e7ed;
+    border-right-style: solid;
+    border-right-width: 1px;
+    max-width: 250px;
+}
+
+.my-section-text {
+    color: #7F7F7F;
+    font-size: 18px;
+    font-weight: normal;
+    padding-left: 15px;
+}
+
+.my-section-text-activ {
+    color: #d10024;
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.my-margin {
+    margin-bottom: 10px;
+}
+
+.my-margin-activ {
+    margin-bottom: 10px;
+    border-left-color: #d10024;
+    border-left-style: solid;
+    border-left-width: 5px;
+}

@@ -32,7 +32,8 @@ namespace MyShop
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<ShopDBContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<ShopDBContext>(options => options.UseSqlite(connection));
+            //services.AddDbContext<ShopDBContext>(options => options.UseSqlServer(connection));
             services.AddTransient<IBrand, BrandRepository>();
             services.AddTransient<IProduct, ProductRepository>();
             services.AddTransient<IAssembly, AssemblyRepository>();

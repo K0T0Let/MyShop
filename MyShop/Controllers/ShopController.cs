@@ -76,7 +76,10 @@ namespace MyShop.Controllers
             return View(new MVElement(item1, item2));
         }
 
-
+        public IActionResult Account()
+        {
+            return View();
+        }
         /*public IActionResult Index()
         {
             AllModels model = new AllModels { products = _products.products, categories = _category.categories };

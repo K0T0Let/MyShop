@@ -1,0 +1,8 @@
+﻿@{
+	ViewBag.Section = "Избранное";
+}
+
+@await Html.PartialAsync("PartialView/Menu", new Dictionary<string, string>(Model.SectionList))
+<div class="col-md-9">
+	<h1>@ViewBag.Section</h1>
+</div>
